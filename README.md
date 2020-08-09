@@ -30,4 +30,5 @@ yarn client dev
 
 
 
-#TODO: Hasuraエンドポイントを環境変数で指定するように docker-composeやcodegenを修正する
+# TODO 
+- Hasuraエンドポイントを環境変数で指定するように docker-composeやcodegenを修正する
