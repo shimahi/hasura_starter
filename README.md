@@ -12,6 +12,9 @@ Yarn ^1.22.4
 ```
 $ . ./init.sh your_app_name
 ```
+`packages/hasura/docker-compose.yaml` の `HASURA_GRAPHQL_DEV_MODE` を "false" に変更
+
+必要に応じて `packages/hasura/docker-compose.yaml` と `packages/hasura/config.yaml` のエンドポイントのポート番号を変更する。
 
 
 ```
@@ -24,3 +27,7 @@ yarn hasura console
 # クライアントの起動
 yarn client dev
 ```
+
+
+
+#TODO: Hasuraエンドポイントを環境変数で指定するように docker-composeやcodegenを修正する
