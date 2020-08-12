@@ -37,8 +37,17 @@ yarn-debug.log*
 yarn-error.log*
 
 ' >>.gitignore
-git init &
 
+
+## download hasura and postgres container
+cd packages/hasura && wget https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-compose/docker-compose.yaml && hasura init .
+cd ../../
+
+## write README
+touch README.md
+echo "# $1" >>README.md
+
+git init &
 ### import npm packages
 yarn workspace client add react react-dom @emotion/core ress @apollo/client graphql
 wait #husky should be installed after '.git' was created.
@@ -50,15 +59,6 @@ yarn workspace client add -D typescript @types/{node,react,react-dom} \
   prettier eslint eslint-config-{airbnb-typescript,prettier} eslint-plugin-{import,jsx-a11y,prettier,react,react-hooks} \
   @typescript-eslint/eslint-plugin @typescript-eslint/parser \
   lint-staged husky
-
-
-## download hasura and postgres container
-cd packages/hasura && wget https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-compose/docker-compose.yaml && hasura init .
-cd ../../
-
-## write README
-touch README.md
-echo "# $1" >>README.md
 
 ## remove this script
 find ./ -name "init.sh" | xargs rm
