@@ -17,6 +17,20 @@ rm -rf .git
 rm -f .gitignore README.md
 touch .gitignore
 
+
+## setting env
+touch ./packages/client/.env
+touch ./packages/hasura/.env
+echo "HASURA_GRAPHQL_ENDPOINT=http://localhost:8080/v1/graphql
+HASURA_GRAPHQL_ADMIN_SECRET=myadminsecretkey
+AUTH_DOMAIN=
+AUTH_CLIENT_ID=
+AUTH_AUDIENCE=" >>./packages/client/.env
+echo "HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgrespassword@postgres:5432/postgres
+POSTGRES_PASSWORD=postgrespassword
+HASURA_GRAPHQL_ADMIN_SECRET=myadminsecretkey
+HASURA_GRAPHQL_JWT_SECRET=" >>./packages/hasura/.env
+
 echo '# dependencies
 /node_modules
 /.pnp
@@ -41,7 +55,7 @@ yarn-error.log*
 git init
 
 ## download hasura and postgres container
-cd packages/hasura && wget https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-compose/docker-compose.yaml && hasura init .
+cd packages/hasura && hasura init .
 cd ../../
 
 ## write README
