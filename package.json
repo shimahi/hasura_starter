@@ -15,5 +15,15 @@
     "nohoist": [
       "**/ress"
     ]
+  },
+  "lint-staged": {
+    "./packages/client/src/**/*.{ts,tsx}": [
+      "eslint './packages/client/src/**/*.{js,jsx,ts,tsx}' --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
