@@ -8,15 +8,5 @@
     "build": "webpack --mode production",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "generate": "graphql-codegen --config codegen.yml"
-  },
-  "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
