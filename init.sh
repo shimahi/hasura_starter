@@ -54,6 +54,10 @@ yarn-error.log*
 ' >>.gitignore
 git init
 
+# assign postgres volume path on Docker
+sed -i -e "s/db_data/$1_db_data/" packages/hasura/docker-compose.yaml
+find ./packages/hasura -name "docker-compose.yaml-e" | xargs rm
+
 ## download hasura and postgres container
 cd packages/hasura && hasura init .
 cd ../../
