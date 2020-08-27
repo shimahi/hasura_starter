@@ -1,5 +1,7 @@
-# Hasura Starter
-React(webpack) + Hasura(docker) + PostgreSQL(docker) の環境構築を行うシェルスクリプトです。
+# SAHARA
+
+フロントエンド(React) + 第一エンドポイント(Hasura) + DB(PostgreSQL) + 第二エンドポイント(FastAPI)  
+のフルスタックアプリ開発を行うためのwebpack/dockerキット
 
 動作環境  
 Node.js `^14.3`  
@@ -20,11 +22,12 @@ yarn hasura start
 # hasuraコンソールの起動
 yarn hasura console
 
+# FastAPIの起動
+yarn api start
+
 # クライアントの起動
 yarn client dev
 ```
 
-
-
-# TODO 
-- ApolloClientのProviderを作っておく
+#TODO: 
+Hasura Cloudへのメタデータの適用・Cloud RunへのFastAPIのデプロイをGithub Actionsで自動化する
