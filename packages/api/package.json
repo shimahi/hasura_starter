@@ -1,0 +1,13 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "docker-compose up -d",
+    "down": "docker-compose down",
+    "install": "poetry install",
+    "add": "poetry add",
+    "remove": "poetry remove"
+  }
+}
