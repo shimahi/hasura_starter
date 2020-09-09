@@ -1,36 +1,49 @@
-from graphene import Schema, ObjectType, Field, String, List
+from ariadne import QueryType, gql, make_executable_schema
+from ariadne.asgi import GraphQL
 from fastapi import FastAPI
-from starlette.graphql import GraphQLApp
 
 
-class Member(ObjectType):
-    name = String()
-    part = String()
+type_defs = gql("""
+    type Query {
+        hello(name: String = "いぬ"): String!
+        goodbye: String!
+        members: [Member!]!
+    }
+
+    type Member {
+        name: String!
+        part: String!
+    }
+""")
+
+query = QueryType()
 
 
-class Query(ObjectType):
-    hello = String(name=String(default_value="いぬ"))
-    goodbye = String()
-    member = Field(List(Member))
+@query.field("hello")
+def resolve_hello(*_, name):
+    return f"Hello, {name}!!"
 
-    def resolve_hello(self, info, name):
-        return "Hello " + name + "!"
 
-    def resolve_goodbye(self, info):
-        return "Goodbye!"
+@query.field("goodbye")
+def resolve_goodbye(*_):
+    return "goodbye!"
 
-    def resolve_member(_, info):
-        return [
-            {
-                "name": "shimahi",
-                "part": "guitar",
-            },
-            {
-                "name": "mochi",
-                "part": "vocal"
-            }
-        ]
 
+@query.field("members")
+def resolve_members(*_):
+    return [
+        {
+            "name": "shimahi",
+            "part": "guitar"
+        },
+        {
+            "name": "mochi",
+            "part": "vocal"
+        }
+    ]
+
+
+schema = make_executable_schema(type_defs, query)
 
 app = FastAPI()
-app.add_route("/", GraphQLApp(schema=Schema(query=Query)))
+app.add_route("/", GraphQL(schema, debug=True))
