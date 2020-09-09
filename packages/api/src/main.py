@@ -1,21 +1,10 @@
-from ariadne import QueryType, gql, make_executable_schema
 from ariadne.asgi import GraphQL
 from fastapi import FastAPI
+from ariadne import (QueryType, load_schema_from_path,
+                     make_executable_schema)
 
 
-type_defs = gql("""
-    type Query {
-        hello(name: String = "いぬ"): String!
-        goodbye: String!
-        members: [Member!]!
-    }
-
-    type Member {
-        name: String!
-        part: String!
-    }
-""")
-
+type_defs = load_schema_from_path("typeDefs.graphql")
 query = QueryType()
 
 
