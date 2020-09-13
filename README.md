@@ -23,7 +23,7 @@ yarn hasura start
 yarn hasura console
 
 # FastAPIの起動
-yarn api start
+yarn server start
 
 # クライアントの起動
 yarn client dev

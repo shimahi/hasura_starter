@@ -6,7 +6,7 @@
   "scripts": {
     "client": "yarn workspace client",
     "hasura": "yarn workspace hasura",
-    "api": "yarn workspace api"
+    "server": "yarn workspace server"
   },
   "workspaces": {
     "packages": [

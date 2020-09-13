@@ -60,7 +60,7 @@ find ./packages/hasura -name "docker-compose.yaml-e" | xargs rm
 
 ## download hasura and postgres container
 cd packages/hasura && hasura init .
-cd ../api/ && poetry install && docker-compose build
+cd ../server/ && poetry install && docker-compose build
 
 cd ../../
 
