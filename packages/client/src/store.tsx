@@ -4,6 +4,9 @@ import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from '@apollo/c
 const cache = new InMemoryCache()
 const link = new HttpLink({
   uri: process.env.HASURA_GRAPHQL_ENDPOINT,
+  headers: {
+    'x-hasura-admin-secret': process.env.HASURA_GRAPHQL_ADMIN_SECRET,
+  },
 })
 
 const client = new ApolloClient({
