@@ -1,5 +1,4 @@
 from ariadne.asgi import GraphQL
-from fastapi import FastAPI
 from ariadne import (QueryType, load_schema_from_path,
                      make_executable_schema)
 
@@ -34,5 +33,4 @@ def resolve_members(*_):
 
 schema = make_executable_schema(type_defs, query)
 
-app = FastAPI()
-app.add_route("/", GraphQL(schema, debug=True))
+app = GraphQL(schema, debug=True)

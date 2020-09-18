@@ -1,7 +1,10 @@
 # SAHARA
 
-フロントエンド(React) + 第一エンドポイント(Hasura) + DB(PostgreSQL) + 第二エンドポイント(FastAPI)  
-のフルスタックアプリ開発を行うためのwebpack/dockerキット
+- フロントエンド(React)
+- 第一GraphQLエンドポイント(Hasura)・・・データソース管理
+- 第二GraphQLエンドポイント(Ariadne)・・・バッチ処理  
+- DB(PostgreSQL)
+のフルスタック構成でアプリ開発を行うためのwebpack/dockerキット
 
 動作環境  
 Node.js `^14.3`  
@@ -22,7 +25,7 @@ yarn hasura start
 # hasuraコンソールの起動
 yarn hasura console
 
-# FastAPIの起動
+# Ariadneの起動
 yarn server start
 
 # クライアントの起動
@@ -30,4 +33,4 @@ yarn client dev
 ```
 
 #TODO: 
-Hasura Cloudへのメタデータの適用・Cloud RunへのFastAPIのデプロイをGithub Actionsで自動化する
+Hasura Cloudへのメタデータの適用・Cloud RunへのAriadneのデプロイをGithub Actionsで自動化する
