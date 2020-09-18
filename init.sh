@@ -88,5 +88,14 @@ yarn install -W
 cd packages/client && npx tailwindcss init
 cd ../../
 
+
+## annotate python path to vscode
+mkdir .vscode
+touch .vscode/settings.json
+echo '{
+  "python.pythonPath": "./packages/server/.venv/bin/python3"
+}
+' >> .vscode/settings.json
+
 ## remove this script
 find ./ -name "init.sh" | xargs rm
