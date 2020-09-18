@@ -6,6 +6,7 @@
   "scripts": {
     "start": "docker-compose up -d",
     "down": "docker-compose down",
+    "log": "docker-compose logs -f",
     "install": "poetry install",
     "add": "poetry add",
     "remove": "poetry remove"
