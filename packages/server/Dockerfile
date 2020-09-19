@@ -6,12 +6,12 @@ WORKDIR /app
 
 COPY pyproject.toml poetry.lock ./
 
-RUN pip install poetry \
+RUN pip install poetry attrs \
   && poetry config virtualenvs.create false \
   && poetry install --no-dev
 
 COPY . .
 
-WORKDIR /app/src
+WORKDIR /app
 
-CMD uvicorn main:app --host 0.0.0.0 --port ${PORT}
+CMD uvicorn api.main:app --host 0.0.0.0 --port ${PORT}

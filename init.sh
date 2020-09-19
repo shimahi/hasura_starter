@@ -60,7 +60,28 @@ find ./packages/hasura -name "docker-compose.yaml-e" | xargs rm
 
 ## download hasura and postgres container
 cd packages/hasura && hasura init .
-cd ../server/ && poetry install && docker-compose build
+
+## setup ariadne
+cd ../server/
+poetry install &
+wait
+docker-compose build
+
+touch vercel.json
+echo '
+{
+  "version": 2,
+  "regions": ["hnd1"],
+  "functions": {
+    "api/main.py": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "routes": [{ "src": "/", "dest": "api/main.py" }]
+}
+' >> vercel.json
+
 
 cd ../../
 

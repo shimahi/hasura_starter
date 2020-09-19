@@ -9,6 +9,7 @@
     "log": "docker-compose logs -f",
     "install": "poetry install",
     "add": "poetry add",
-    "remove": "poetry remove"
+    "remove": "poetry remove",
+    "export": "rm -f requirements.txt && docker-compose exec app poetry export -f requirements.txt > requirements.txt"
   }
 }

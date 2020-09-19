@@ -3,7 +3,7 @@ from ariadne import (QueryType, load_schema_from_path,
                      make_executable_schema)
 
 
-type_defs = load_schema_from_path("typeDefs.graphql")
+type_defs = load_schema_from_path("api/typeDefs.graphql")
 query = QueryType()
 
 
