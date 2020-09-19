@@ -8,8 +8,8 @@
     "down": "docker-compose down",
     "log": "docker-compose logs -f",
     "install": "poetry install",
-    "add": "poetry add",
-    "remove": "poetry remove",
-    "export": "rm -f requirements.txt && docker-compose exec app poetry export -f requirements.txt > requirements.txt"
+    "append": "poetry add",
+    "discard": "poetry remove",
+    "export": "rm -f requirements.txt && poetry export -f requirements.txt > requirements.txt"
   }
 }
