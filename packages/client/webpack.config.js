@@ -18,6 +18,10 @@ module.exports = {
       src: path.resolve(__dirname, 'src'),
     },
   },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    open: true,
+  },
   module: {
     rules: [
       {
