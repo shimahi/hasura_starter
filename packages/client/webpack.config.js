@@ -9,6 +9,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'images/[hash][ext]',
     filename: 'bundle.js',
   },
   resolve: {
@@ -21,6 +22,12 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     open: true,
+  },
+  cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename],
+    },
   },
   module: {
     rules: [
@@ -40,9 +47,7 @@ module.exports = {
         ],
       },
       {
-        // cssファイルは自前で書かない(emotionを使う)が、animate.css等のcssライブラリを使うためにローダーを入れる
         test: /.css$/,
-        include: /node_modules/,
         use: [
           'style-loader',
           {
@@ -57,15 +62,7 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpg|eot|wof|woff|ttf|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 100 * 1024,
-              name: './img/[name].[ext]',
-            },
-          },
-        ],
+        type: 'asset/resource',
       },
     ],
   },

@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 
 export const sm = `@media(min-width: 640px)`
 export const md = `@media(min-width: 768px)`
