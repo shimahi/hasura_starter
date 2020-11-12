@@ -1,6 +1,4 @@
 import 'ress'
-
-import React from 'react'
 import { render } from 'react-dom'
 import AppProvider from 'store'
 

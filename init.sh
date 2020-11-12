@@ -67,22 +67,6 @@ poetry install &
 wait
 docker-compose build
 
-touch vercel.json
-echo '
-{
-  "version": 2,
-  "regions": ["hnd1"],
-  "functions": {
-    "api/main.py": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
-  "routes": [{ "src": "/", "dest": "api/main.py" }]
-}
-' >> vercel.json
-
-
 cd ../../
 
 ## write README
@@ -116,7 +100,9 @@ cd ../../
 mkdir .vscode
 touch .vscode/settings.json
 echo '{
-  "python.pythonPath": "./packages/server/.venv/bin/python3"
+  "python.pythonPath": "./packages/server/.venv/bin/python3",
+  "python.autoComplete.extraPaths": ["./packages/server/app"],
+  "python.analysis.extraPaths": ["./packages/server/app"]
 }
 ' >> .vscode/settings.json
 
