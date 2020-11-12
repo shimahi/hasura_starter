@@ -1,7 +1,0 @@
-node_modules
-dist/*
-yarn-error.log
-.DS_Store
-.vscode
-.env
-src/types/graphql.ts

@@ -1,7 +1,0 @@
-# sample
-query getUsers {
-  user {
-    id
-    name
-  }
-}

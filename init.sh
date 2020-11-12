@@ -12,20 +12,30 @@ mv ../${initialDirVal} ../"$1" &
 wait
 cd ../"$1"
 
-## setting git
+git clone git@github.com:shimahi/ariadne_starter.git
+git clone git@github.com:shimahi/react_starter.git
+
+cd react_starter && . ./init.sh client # client
+
+cd ../
+
+pwd
+ls
+
+cd ariadne_starter && . ./init.sh server # server
+
+cd ../
+
+pwd
+ls
+
+mv client ./packages/client
+mv server ./packages/server # /
+
+# # setting git
 rm -rf .git
 rm -f .gitignore README.md
 touch .gitignore
-
-## setup ariadne
-cd packages/
-git clone git@github.com:shimahi/ariadne_starter.git &
-wait
-cd ariadne_starter
-source ./init.sh server &
-wait
-cd ../../
-mv package.server.json packages/server/package.json
 
 ## setting env
 touch ./packages/client/.env
@@ -63,34 +73,28 @@ yarn-error.log*
 ' >>.gitignore
 git init
 
-# assign postgres volume path on Docker
+## setup hasura
 sed -i -e "s/db_data/$1_db_data/" packages/hasura/docker-compose.yaml
 find ./packages/hasura -name "docker-compose.yaml-e" | xargs rm
 
 ## download hasura and postgres container
-cd packages/hasura && hasura init .
+cd packages/hasura && hasura init . # hasura
 
+cd ../.. # /
 
 
 ## write README
 touch README.md
 echo "# $1" >>README.md
 
-### import npm packages
-yarn workspace client add react react-dom @emotion/react @emotion/styled ress twin.macro @apollo/client graphql
-yarn workspace client add -D typescript @types/{node,react,react-dom} \
-  webpack webpack-{cli,dev-server} {ts,style,css,babel}-loader html-webpack-plugin worker-plugin dotenv-webpack \
-  @emotion/babel-preset-css-prop \
-  @babel/{core,preset-env,preset-react,plugin-transform-runtime} \
-  @graphql-codegen/{cli,typescript,typescript-operations,typescript-react-apollo} \
-  prettier eslint eslint-config-{airbnb-typescript,prettier} eslint-plugin-{import,jsx-a11y,prettier,react,react-hooks} \
-  @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-  lint-staged husky &
+## move some file
+mv ./package.server.json packages/server/package.json
+mv ./codegen.client.js packages/client/codegen.js
+mv ./store.client.tsx packages/client/src/store.tsx
 
 
-
-wait
-rm -rf node_modules &
+## reload client packages
+rm -rf packages/client/node_modules &
 wait
 yarn install -W &
 wait
@@ -105,10 +109,6 @@ echo '{
 }
 ' >> .vscode/settings.json
 
-## setup tailwindcss
-cd packages/client
-npx tailwindcss init
-cd ../../
 
-## remove this script
+# ## remove this script
 find ./ -name "init.sh" | xargs rm
