@@ -92,12 +92,6 @@ mv ./package.server.json packages/server/package.json
 mv ./codegen.client.js packages/client/codegen.js
 mv ./store.client.tsx packages/client/src/store.tsx
 
-## change "name" attributes of client/package.json
-cat packages/client/package.json | jq '.name = "client"' >  packages/client/tmp.json
-rm -f packages/client/package.json
-mv packages/client/tmp.json packages/client/package.json
-
-
 ## reload client packages
 rm -rf packages/client/node_modules &
 wait
