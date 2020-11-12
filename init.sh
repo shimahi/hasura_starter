@@ -17,6 +17,15 @@ rm -rf .git
 rm -f .gitignore README.md
 touch .gitignore
 
+## setup ariadne
+cd packages/
+git clone git@github.com:shimahi/ariadne_starter.git &
+wait
+cd ariadne_starter
+source ./init.sh server &
+wait
+cd ../../
+mv package.server.json packages/server/package.json
 
 ## setting env
 touch ./packages/client/.env
@@ -61,13 +70,7 @@ find ./packages/hasura -name "docker-compose.yaml-e" | xargs rm
 ## download hasura and postgres container
 cd packages/hasura && hasura init .
 
-## setup ariadne
-cd ../server/
-poetry install &
-wait
-docker-compose build
 
-cd ../../
 
 ## write README
 touch README.md
@@ -89,12 +92,8 @@ yarn workspace client add -D typescript @types/{node,react,react-dom} \
 wait
 rm -rf node_modules &
 wait
-yarn install -W
-
-## setup tailwindcss
-cd packages/client && npx tailwindcss init
-cd ../../
-
+yarn install -W &
+wait
 
 ## annotate python path to vscode
 mkdir .vscode
@@ -105,6 +104,11 @@ echo '{
   "python.analysis.extraPaths": ["./packages/server/app"]
 }
 ' >> .vscode/settings.json
+
+## setup tailwindcss
+cd packages/client
+npx tailwindcss init
+cd ../../
 
 ## remove this script
 find ./ -name "init.sh" | xargs rm
