@@ -15,7 +15,7 @@ cd ../"$1"
 git clone git@github.com:shimahi/ariadne_starter.git
 git clone git@github.com:shimahi/react_starter.git
 
-cd react_starter && . ./common.sh client # client
+cd react_starter && . ./next.sh client # client
 
 cd ../
 
@@ -34,17 +34,18 @@ mv server ./packages/server # /
 
 # # setting git
 rm -rf .git
-rm -f .gitignore README.md next.sh
+rm -f .gitignore README.md init.sh
 touch .gitignore
 
 ## setting env
-touch ./packages/client/.env
+rm ./packages/client/.env.local
+touch ./packages/client/.env.local
 touch ./packages/hasura/.env
-echo "HASURA_GRAPHQL_ENDPOINT=http://localhost:8080/v1/graphql
-HASURA_GRAPHQL_ADMIN_SECRET=myadminsecretkey
-AUTH_DOMAIN=
-AUTH_CLIENT_ID=
-AUTH_AUDIENCE=" >>./packages/client/.env
+echo "NEXT_PUBLIC_HASURA_GRAPHQL_ENDPOINT=http://localhost:8080/v1/graphql
+NEXT_PUBLIC_HASURA_GRAPHQL_ADMIN_SECRET=myadminsecretkey
+NEXT_PUBLIC_AUTH_DOMAIN=
+NEXT_PUBLIC_AUTH_CLIENT_ID=
+NEXT_PUBLIC_AUTH_AUDIENCE=" >>./packages/client/.env.local
 echo "HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgrespassword@postgres:5432/postgres
 POSTGRES_PASSWORD=postgrespassword
 HASURA_GRAPHQL_ADMIN_SECRET=myadminsecretkey
@@ -96,12 +97,7 @@ wait
 yarn install -W &
 wait
 
-## install some client Package
-yarn client add @apollo/client @emotion/css
-
-rm -rf packages/client/.git packages/client/README.md packages/server/.git packages/server/README.md \
-  packages/client/src/components packages/client/src/pages packages/client/babel.next.config.js packages/client/next-env.d.ts \
-  packages/client/next.config.js packages/client/next.sh
+rm -rf packages/client/.git packages/client/README.md packages/server/.git packages/server/README.md
 
 ## annotate python path to vscode
 mkdir .vscode
@@ -116,4 +112,4 @@ echo '{
 
 
 # ## remove this script
-find ./ -name "init.sh" | xargs rm
+find ./ -name "next.sh" | xargs rm
