@@ -4,6 +4,7 @@
 - 第一GraphQLエンドポイント(データソース管理) → Hasura
 - 第二GraphQL/RESTエンドポイント(バッチ処理) → Ariadne + FastAPI
 - DB → PostgreSQL
+
 のフルスタック構成でアプリ開発を行うためのwebpack/dockerキット
 
 ##### 動作環境  
