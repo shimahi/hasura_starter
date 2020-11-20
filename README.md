@@ -1,11 +1,14 @@
 # SAHARA
 
-- クライアント → React
+<img src="https://meminus.now.sh/images/sahara.jpg" alt="sahara 概要">
+
+HasuraをAPIエンドポイントの枢軸として開発するフルスタックReactアプリのアーキテクチャ
+
 - 第一GraphQLエンドポイント(データソース管理) → Hasura
 - 第二GraphQL/RESTエンドポイント(バッチ処理) → Ariadne + FastAPI
-- DB → PostgreSQL
 
-のフルスタック構成でアプリ開発を行うためのwebpack/dockerキット
+を構成し、Hasuraに対してApollo Clientでリクエストを行う
+
 
 ##### 動作環境  
 Node.js `^14.3`  
